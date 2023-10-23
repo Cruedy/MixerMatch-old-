@@ -32,15 +32,14 @@ const questions = [
     }
 ]
 
-let questionNumber = 1 //holds the current question number
 let indexNumber = 0 //will be used in displaying next question
+let answers = []
 
 // function for displaying next question in the array to dom
 //also handles displaying players and quiz information to dom
 function NextQuestion(index) {
     const currentQuestion = questions[index]
     console.log(currentQuestion)
-    document.getElementById("question-number").innerHTML = questionNumber
     document.getElementById("display-question").innerHTML = currentQuestion.question;
     if(Object.keys(currentQuestion).length === 3) 
     {
@@ -78,9 +77,8 @@ function NextQuestion(index) {
         document.getElementById("option-three-label").innerHTML = currentQuestion.optionC;
         document.getElementById("option-four-label").innerHTML = currentQuestion.optionD;
     }
+    storeAnswer()
 }
-
-let answers = []
 
 function storeAnswer() {
     const options = document.getElementsByName("option"); //gets all elements with name of 'option' (in this the radio inputs)
@@ -129,5 +127,6 @@ function handleEndGame() {
 
     //data to display to score board
     document.getElementById('remarks').innerHTML = remark
+
 
 }

@@ -1,26 +1,17 @@
 <html>
     <body onload="NextQuestion(0)">
         <main>
-            <!-- creating a modal for when quiz ends -->
             <div class="modal-container" id="score-modal">
     
                 <div class="modal-content-container">
-    
-                    <h1>Congratulations, Quiz Completed.</h1>
                     <div class="grade-details">
                         <p ><span id="remarks"></span></p>
                     </div>
     
                 </div>
             </div>
-    <!-- end of modal of quiz details-->
     
             <div class="game-quiz-container">
-    
-                <div class="game-details-container">
-                    <h1>Score : <span id="player-score"></span> / 10</h1>
-                    <h1> Question : <span id="question-number"></span> / 10</h1>
-                </div>
     
                 <div class="game-question-container">
                     <h1 id="display-question"></h1>
@@ -29,11 +20,6 @@
                 <div class="game-options-container">
     
                    <div class="modal-container" id="option-modal">
-    
-                        <div class="modal-content-container">
-                             <h1>Please Pick An Option</h1>
-    
-                        </div>
     
                    </div>
     
