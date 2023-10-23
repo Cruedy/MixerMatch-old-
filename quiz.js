@@ -21,14 +21,25 @@ function NextQuestion(index) {
     console.log(currentQuestion)
     document.getElementById("question-number").innerHTML = questionNumber
     document.getElementById("display-question").innerHTML = currentQuestion.question;
-    document.getElementById("option-one-label").innerHTML = currentQuestion.optionA;
-    document.getElementById("option-two-label").innerHTML = currentQuestion.optionB;
+    if(Object.keys(currentQuestion).length === 3) 
+    {
+        document.getElementById("option-one-label").innerHTML = currentQuestion.optionA;
+        document.getElementById("option-two-label").innerHTML = currentQuestion.optionB;
+    } 
+    if(Object.keys(currentQuestion).length === 5) 
+    {
+        document.getElementById("display-question").innerHTML = currentQuestion.question;
+        document.getElementById("option-one-label").innerHTML = currentQuestion.optionA;
+        document.getElementById("option-two-label").innerHTML = currentQuestion.optionB;
+        // document.getElementById("option-three-label").innerHTML = currentQuestion.optionC;
+        // document.getElementById("option-four-label").innerHTML = currentQuestion.optionD;
+    }
 }
 
 let answers = []
 
 function storeAnswer() {
-    const options = document.getElementsByName("option"); //gets all elements in dom with name of 'option' (in this the radio inputs)
+    const options = document.getElementsByName("option"); //gets all elements with name of 'option' (in this the radio inputs)
 
     options.forEach((option) => {
         if(option.checked === true){
