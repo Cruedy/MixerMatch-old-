@@ -1,13 +1,34 @@
 const questions = [
     {
+        question: "Which team are you on?",
+        optionA: "Swim and Dive",
+        optionB: "Womens Water Polo",
+        optionC: "Mens Water Polo"
+    },
+    {
         question: "Are you in a committed relationship already?",
         optionA: "yes",
         optionB: "no"
     },
     {
-        question: "Which team are you on?",
-        optionA: "Swim and Dive",
-        optionB: "Water Polo"
+        question: "What is your gender identity?",
+        optionA: "Woman",
+        optionB: "Man",
+        optionC: "Nonbinary"
+    },
+    {
+        question: "What are your gender preferences?",
+        optionA: "Woman",
+        optionB: "Man",
+        optionC: "Everyone"
+    },
+    {
+        question: "What's your favorite hobby?",
+        optionA: "Pooping",
+        optionB: "Eating",
+        optionC: "Pooing",
+        optionD: "Cooking with Poo"
+
     }
 ]
 
@@ -23,16 +44,39 @@ function NextQuestion(index) {
     document.getElementById("display-question").innerHTML = currentQuestion.question;
     if(Object.keys(currentQuestion).length === 3) 
     {
-        document.getElementById("option-one-label").innerHTML = currentQuestion.optionA;
-        document.getElementById("option-two-label").innerHTML = currentQuestion.optionB;
-    } 
-    if(Object.keys(currentQuestion).length === 5) 
-    {
         document.getElementById("display-question").innerHTML = currentQuestion.question;
         document.getElementById("option-one-label").innerHTML = currentQuestion.optionA;
         document.getElementById("option-two-label").innerHTML = currentQuestion.optionB;
-        // document.getElementById("option-three-label").innerHTML = currentQuestion.optionC;
-        // document.getElementById("option-four-label").innerHTML = currentQuestion.optionD;
+        document.getElementById("option-three-label").innerHTML = currentQuestion.optionC;
+        document.getElementById("option-four-label").innerHTML = currentQuestion.optionD;
+        document.getElementById("option-three").hidden = true;
+        document.getElementById("option-three-label").hidden = true;
+        document.getElementById("option-four").hidden = true;
+        document.getElementById("option-four-label").hidden = true;
+    } 
+    if(Object.keys(currentQuestion).length === 4) 
+    {
+        document.getElementById("option-three").hidden = false;
+        document.getElementById("option-three-label").hidden = false;
+        document.getElementById("display-question").innerHTML = currentQuestion.question;
+        document.getElementById("option-one-label").innerHTML = currentQuestion.optionA;
+        document.getElementById("option-two-label").innerHTML = currentQuestion.optionB;
+        document.getElementById("option-three-label").innerHTML = currentQuestion.optionC;
+        document.getElementById("option-four-label").innerHTML = currentQuestion.optionD;
+        document.getElementById("option-four").hidden = true;
+        document.getElementById("option-four-label").hidden = true;
+    }
+    if(Object.keys(currentQuestion).length === 5) 
+    {
+        document.getElementById("option-three").hidden = false;
+        document.getElementById("option-three-label").hidden = false;
+        document.getElementById("option-four").hidden = false;
+        document.getElementById("option-four-label").hidden = false;
+        document.getElementById("display-question").innerHTML = currentQuestion.question;
+        document.getElementById("option-one-label").innerHTML = currentQuestion.optionA;
+        document.getElementById("option-two-label").innerHTML = currentQuestion.optionB;
+        document.getElementById("option-three-label").innerHTML = currentQuestion.optionC;
+        document.getElementById("option-four-label").innerHTML = currentQuestion.optionD;
     }
 }
 
@@ -47,34 +91,28 @@ function storeAnswer() {
             indexNumber++
         }
     })
+    if (indexNumber == 2 && answers[1] == "optionA")
+    {
+        indexNumber = 4;
+        answers.push("null");
+        answers.push("null");
+        console.log(answers);
+    }
 }
 
-console.log(answers)
+console.log(answers);
 
 //called when the next button is called
 function handleNextQuestion() {
     storeAnswer()
     unCheckRadioButtons()
-    //delays next question displaying for a second just for some effects so questions don't rush in on player
-    setTimeout(() => {
-        if (indexNumber <= questions.length-1) {
-            console.log(indexNumber)
-        //displays next question as long as index number isn't greater than the number of questions
-            NextQuestion(indexNumber)
-        }
-        else {
-            handleEndGame()//ends game if index number greater than 9 meaning we're already at the 10th question
-        }
-        resetOptionBackground()
-    }, 1000);
-}
-
-//sets options background back to null after display the right/wrong colors
-function resetOptionBackground() {
-    const options = document.getElementsByName("option");
-    options.forEach((option) => {
-        document.getElementById(option.labels[0].id).style.backgroundColor = ""
-    })
+    if (indexNumber <= questions.length-1) {
+    //displays next question as long as index number isn't greater than the number of questions
+        NextQuestion(indexNumber)
+    }
+    else {
+        handleEndGame()//ends game if index number greater than 9 meaning we're already at the 10th question
+    }
 }
 
 // unchecking all radio buttons for next question(can be done with map or foreach loop also)
