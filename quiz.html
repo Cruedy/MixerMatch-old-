@@ -1,57 +1,9 @@
 <html>
-    <body onload="NextQuestion(0)">
-        <main>
-            <div class="modal-container" id="score-modal">
-    
-                <div class="modal-content-container">
-                    <div class="grade-details">
-                        <p ><span id="remarks"></span></p>
-                    </div>
-    
-                </div>
-            </div>
-    
-            <div class="game-quiz-container">
-    
-                <div class="game-question-container">
-                    <h1 id="display-question"></h1>
-                </div>
-    
-                <div class="game-options-container">
-    
-                   <div class="modal-container" id="option-modal">
-    
-                   </div>
-    
-                    <span>
-                        <input type="radio" id="option-one" name="option" class="radio" value="optionA" />
-                        <label for="option-one" class="option" id="option-one-label"></label>
-                    </span>
-    
-    
-                    <span>
-                        <input type="radio" id="option-two" name="option" class="radio" value="optionB" />
-                        <label for="option-two" class="option" id="option-two-label"></label>
-                    </span >
-
-                    <span>
-                        <input type="radio" id="option-three" name="option" class="radio" value="optionA" />
-                        <label for="option-one" class="option" id="option-three-label"></label>
-                    </span>
-    
-    
-                    <span>
-                        <input type="radio" id="option-four" name="option" class="radio" value="optionB" />
-                        <label for="option-two" class="option" id="option-four-label"></label>
-                    </span>
-                </div>
-    
-                <div class="next-button-container">
-                    <button onclick="handleNextQuestion()">Next Question</button>
-                </div>
-    
-            </div>
-        </main>
+    <body>
+        <div class="question" id="question"></div>
+        <div class="options" id="options"></div>
+        <button onclick="submit()" id="button">Next Question</button>
+        <div id="response"></div>
         <script src="quiz.js"></script>
     </body>
 </html>
