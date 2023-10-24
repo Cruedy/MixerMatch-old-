@@ -77,7 +77,6 @@ function NextQuestion(index) {
         document.getElementById("option-three-label").innerHTML = currentQuestion.optionC;
         document.getElementById("option-four-label").innerHTML = currentQuestion.optionD;
     }
-    storeAnswer()
 }
 
 function storeAnswer() {
@@ -94,8 +93,8 @@ function storeAnswer() {
         indexNumber = 4;
         answers.push("null");
         answers.push("null");
-        console.log(answers);
     }
+    console.log(answers);
 }
 
 console.log(answers);
