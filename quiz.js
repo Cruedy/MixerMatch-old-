@@ -101,6 +101,7 @@ loadQuestion()
 
 function storeAnswer() {
     const responses = document.getElementsByName("answer");
+    console.log(responses, "response");
     responses.forEach((response) => {
         if(response.type == "radio" && response.checked == true)
         {
@@ -135,8 +136,14 @@ function nextQuestion() {
     }
 }
 
+// Stores entire quiz
+function storeQuiz() {
+
+}
+
 function submit() {
     if (completed == questions.length) {
+        storeQuiz();
         console.log("completed all the questions");
     } else {
         nextQuestion()
