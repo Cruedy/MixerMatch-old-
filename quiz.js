@@ -1,9 +1,12 @@
 const questions = [
     {
-        question: "What's your name"
+        question: "What's your name",
+        inputType: "textBox",
+        options: ["Null"]
     },
     {
         question: "Which team are you on?",
+        inputType: "choice",
         options: [
             "Swim and Dive",
             "Womens Water Polo",
@@ -12,6 +15,7 @@ const questions = [
     },
     {
         question: "Are you in a committed relationship already?",
+        inputType: "choice",
         options: [
             "yes",
             "no"
@@ -19,6 +23,7 @@ const questions = [
     },
     {
         question: "What is your gender identity?",
+        inputType: "choice", 
         options: [
             "Woman",
             "Man",
@@ -27,6 +32,7 @@ const questions = [
     },
     {
         question: "What are your gender preferences?",
+        inputType: "choice", 
         options: [
             "Woman",
             "Man",
@@ -35,6 +41,7 @@ const questions = [
     },
     {
         question: "What's your favorite hobby?",
+        inputType: "choice",
         options: [
             "Pooping",
             "Eating",
@@ -48,11 +55,12 @@ let currentQuestionIndex = 0;
 let completed = 0;
 
 function loadQuestion() {
-    const question = document.getElementById("question")
-    const options = document.getElementById("options")
+    const question = document.getElementById("question");
+    const options = document.getElementById("options");
+    const textBox = document.getElementById("textBox");
 
     question.textContent = questions[currentQuestionIndex].question;
-    options.innerHTML = ""
+    options.innerHTML = "";
 
     for (let i = 0; i < questions[currentQuestionIndex].options.length; i++) {
         const choicesdiv = document.createElement("div");
@@ -63,7 +71,23 @@ function loadQuestion() {
         choice.name = "answer";
         choice.value = i;
 
+        if(questions[currentQuestionIndex].inputType == "textBox"){
+            choice.type = "text";
+            choice.id = "options";
+            console.log(choice);
+            choicesdiv.appendChild(choice);
+            choicesdiv.appendChild(choiceLabel);
+            textBox.appendChild(choicesdiv);
+            break;
+        }
+        else if(document.getElementById("textBox") != null)
+        {
+            document.getElementById("textBox").remove();
+        }
+
         choiceLabel.textContent = questions[currentQuestionIndex].options[i];
+
+        console.log(choiceLabel.textContent, "optionNums");
         
         choicesdiv.appendChild(choice);
         choicesdiv.appendChild(choiceLabel);
@@ -81,9 +105,11 @@ function loadResponse() {
 
 function nextQuestion() {
     if (currentQuestionIndex < questions.length - 1) {
+        console.log(currentQuestionIndex, "index");
         currentQuestionIndex++;
         loadQuestion();
     } else{
+        console.log(document);
         document.getElementById("options").remove()
         document.getElementById("question").remove()
         document.getElementById("button").remove()
