@@ -53,6 +53,7 @@ const questions = [
 
 let currentQuestionIndex = 0;
 let completed = 0;
+let answers = [];
 
 function loadQuestion() {
     const question = document.getElementById("question");
@@ -74,6 +75,7 @@ function loadQuestion() {
         if(questions[currentQuestionIndex].inputType == "textBox"){
             choice.type = "text";
             choice.id = "options";
+            choice.value = "";
             console.log(choice);
             choicesdiv.appendChild(choice);
             choicesdiv.appendChild(choiceLabel);
@@ -97,6 +99,21 @@ function loadQuestion() {
 
 loadQuestion()
 
+function storeAnswer() {
+    const responses = document.getElementsByName("answer");
+    responses.forEach((response) => {
+        if(response.type == "radio" && response.checked == true)
+        {
+            answers.push(response.value);
+        }
+        else if(response.type == "text")
+        {
+            answers.push(response.value);
+        }
+    })
+    console.log(answers, "answers");
+}
+
 function loadResponse() {
     const response = document.getElementById("response")
     const matchedPersonName = "Tyler Headley"
@@ -104,6 +121,7 @@ function loadResponse() {
 }
 
 function nextQuestion() {
+    storeAnswer();
     if (currentQuestionIndex < questions.length - 1) {
         console.log(currentQuestionIndex, "index");
         currentQuestionIndex++;
