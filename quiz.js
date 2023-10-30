@@ -1,5 +1,8 @@
 const questions = [
     {
+        question: "What's your name"
+    },
+    {
         question: "Which team are you on?",
         options: [
             "Swim and Dive",
