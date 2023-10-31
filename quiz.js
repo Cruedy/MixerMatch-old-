@@ -168,12 +168,13 @@ function startTimer() {
     console.log(answers.length, "next");
     if (timeLeft == -1 && answers.length != 12) {
         document.getElementById('timer').remove();
-        clearTimeout(setInterval(startTimer, 1000));
+        clearTimeout(setInterval(startTimer, 10));
         nextQuestion();
     }
     else if(answers.length == 12 && document.getElementById('timer') != null)
     {
         document.getElementById('timer').remove();
+        clearTimeout(setInterval(startTimer, 10));
     } 
     else if (document.getElementById('timer') != null)
     {
