@@ -162,20 +162,21 @@ function loadQuestion() {
 }
 
 var timeLeft = 5;
-var callNext = 0;
 
 function startTimer() {
     var elem = document.getElementById('timer');
     console.log(answers.length, "next");
-    if (timeLeft == -1) {
+    if (timeLeft == -1 && answers.length != 12) {
         document.getElementById('timer').remove();
         clearTimeout(setInterval(startTimer, 1000));
         nextQuestion();
     }
-    else if(answers.length == 12)
+    else if(answers.length == 12 && document.getElementById('timer') != null)
     {
         document.getElementById('timer').remove();
-    } else {
+    } 
+    else if (document.getElementById('timer') != null)
+    {
         elem.innerHTML = timeLeft + ' seconds remaining';
         timeLeft--;
     }
@@ -213,7 +214,6 @@ function loadResponse() {
 }
 
 function nextQuestion() {
-    callNext++;
     storeAnswer();
     if (currentQuestionIndex < questions.length - 1) {
         console.log(currentQuestionIndex, "index");
