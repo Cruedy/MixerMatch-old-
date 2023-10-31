@@ -40,13 +40,73 @@ const questions = [
         ]
     },
     {
-        question: "What's your favorite hobby?",
+        question: "Who do you think should be a swim captain next year?",
         inputType: "choice",
         options: [
-            "Pooping",
-            "Eating",
-            "Pooing",
-            "Cooking with Poo"
+            "Gregory Lonzo",
+            "Cecil the Sagehen",
+            "Hiram Chodosh",
+            "That one girl that shouldn't have dyed her hair"
+        ]
+    },
+    {
+        question: "What's the name of your clique?",
+        inputType: "choice",
+        options: [
+            "Big Brawly Bros",
+            "Those two girls who whisper to each other 24/7",
+            "The Collins Breakfast Club",
+            "Synchronized Game Day Shitters"
+        ]
+    },
+    {
+        question: "What's your favorite fetish?",
+        inputType: "choice",
+        options: [
+            "Chlorine bleached hair",
+            "That sexy referee uniform",
+            "Hands with cement filed nails",
+            "Chlorine scented skin"
+        ]
+    },
+    {
+        question: "What could you live without?",
+        inputType: "choice",
+        options: [
+            "Theo's lack of shoe-wear",
+            "Coach Dave's gossiping",
+            "'D-squad' - Katy Shaw",
+            "The lack of pool space"
+        ]
+    },
+    {
+        question: "Which spot on campus would you rather give birth on?",
+        inputType: "choice",
+        options: [
+            "The cube water",
+            "Seal Court",
+            "That one broken back extension machine in the training and conditioning room",
+            "The Mudd basements"
+        ]
+    },
+    {
+        question: "What's your stance on child rearing?",
+        inputType: "choice",
+        options: [
+            "I dont believe in the future of humanity",
+            "Everyone needs some avoidant attachment issues",
+            "My kids will learn more on a farm than in school",
+            "Kumon"
+        ]
+    },
+    {
+        question: "What's (8 + 8) % 10 x 4",
+        inputType: "choice",
+        options: [
+            "6.4",
+            "640",
+            "24",
+            "0"
         ]
     }
 ]
@@ -56,6 +116,10 @@ let completed = 0;
 let answers = [];
 
 function loadQuestion() {
+    if(answers.length == 11)
+    {
+        startTimer();
+    }
     const question = document.getElementById("question");
     const options = document.getElementById("options");
     const textBox = document.getElementById("textBox");
@@ -112,6 +176,13 @@ function storeAnswer() {
             answers.push(response.value);
         }
     })
+    if(answers.length >= 3 && answers[2] == 0)
+    {
+        answers.push("null");
+        answers.push("null");
+        currentQuestionIndex++;
+        currentQuestionIndex++;
+    }
     console.log(answers, "answers");
 }
 
@@ -134,6 +205,11 @@ function nextQuestion() {
         document.getElementById("button").remove()
         loadResponse();
     }
+}
+
+// Times the math question
+function startTimer() {
+    
 }
 
 // Stores entire quiz
