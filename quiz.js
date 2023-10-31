@@ -116,10 +116,6 @@ let completed = 0;
 let answers = [];
 
 function loadQuestion() {
-    if(answers.length == 11)
-    {
-        startTimer();
-    }
     const question = document.getElementById("question");
     const options = document.getElementById("options");
     const textBox = document.getElementById("textBox");
@@ -159,6 +155,30 @@ function loadQuestion() {
         choicesdiv.appendChild(choiceLabel);
         options.appendChild(choicesdiv);
     }
+    if(answers.length == 11)
+    {
+        setInterval(startTimer, 1000);
+    }
+}
+
+var timeLeft = 5;
+var callNext = 0;
+
+function startTimer() {
+    var elem = document.getElementById('timer');
+    console.log(answers.length, "next");
+    if (timeLeft == -1) {
+        document.getElementById('timer').remove();
+        clearTimeout(setInterval(startTimer, 1000));
+        nextQuestion();
+    }
+    else if(answers.length == 12)
+    {
+        document.getElementById('timer').remove();
+    } else {
+        elem.innerHTML = timeLeft + ' seconds remaining';
+        timeLeft--;
+    }
 }
 
 loadQuestion()
@@ -176,7 +196,7 @@ function storeAnswer() {
             answers.push(response.value);
         }
     })
-    if(answers.length >= 3 && answers[2] == 0)
+    if(answers.length == 3 && answers[2] == 0)
     {
         answers.push("null");
         answers.push("null");
@@ -193,6 +213,7 @@ function loadResponse() {
 }
 
 function nextQuestion() {
+    callNext++;
     storeAnswer();
     if (currentQuestionIndex < questions.length - 1) {
         console.log(currentQuestionIndex, "index");
@@ -205,11 +226,6 @@ function nextQuestion() {
         document.getElementById("button").remove()
         loadResponse();
     }
-}
-
-// Times the math question
-function startTimer() {
-    
 }
 
 // Stores entire quiz
