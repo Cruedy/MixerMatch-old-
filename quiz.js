@@ -1,3 +1,5 @@
+import { db, ref, push, set  } from "./firebase.js";
+
 const questions = [
     {
         question: "What's your name",
@@ -155,7 +157,7 @@ function loadQuestion() {
         choicesdiv.appendChild(choiceLabel);
         options.appendChild(choicesdiv);
     }
-    if(answers.length == 11)
+    if(answers.length == 10)
     {
         setInterval(startTimer, 1000);
     }
@@ -183,7 +185,7 @@ function startTimer() {
     }
 }
 
-loadQuestion()
+// loadQuestion()
 
 function storeAnswer() {
     const responses = document.getElementsByName("answer");
@@ -208,37 +210,47 @@ function storeAnswer() {
     console.log(answers, "answers");
 }
 
-function loadResponse() {
-    const response = document.getElementById("response")
-    const matchedPersonName = "Tyler Headley"
-    response.textContent = `You are matched with ${matchedPersonName}`
+// SAVE THIS FOR LATER
+// function loadResponse() {
+//     const response = document.getElementById("response")
+//     const matchedPersonName = "Tyler Headley"
+//     response.textContent = `You are matched with ${matchedPersonName}`
+// }
+
+function writeData() {
+    const usersRef = ref(db, "users"); // Reference to the "users" node
+    const newUserRef = push(usersRef); // Generate a new unique key
+    set(newUserRef, { // Set data at the new key
+        answers: answers
+    });
 }
 
 function nextQuestion() {
     storeAnswer();
     if (currentQuestionIndex < questions.length - 1) {
-        console.log(currentQuestionIndex, "index");
         currentQuestionIndex++;
         loadQuestion();
-    } else{
-        console.log(document);
-        document.getElementById("options").remove()
-        document.getElementById("question").remove()
-        document.getElementById("button").remove()
-        loadResponse();
-    }
-}
-
-// Stores entire quiz
-function storeQuiz() {
-
-}
-
-function submit() {
-    if (completed == questions.length) {
-        storeQuiz();
-        console.log("completed all the questions");
     } else {
-        nextQuestion()
+        console.log("quiz Done")
+        writeData(); // Write data to Firebase when all questions are answered
     }
 }
+
+window.submit = function() {
+    nextQuestion();
+}
+
+// Function to initialize the quiz
+function initializeQuiz() {
+    // Load the first question when the page loads
+    loadQuestion();
+
+    // Add event listener to the button for handling clicks
+    const button = document.getElementById("button");
+    button.addEventListener("click", submit);
+}
+
+// Call initializeQuiz() when the page loads
+document.addEventListener("DOMContentLoaded", initializeQuiz);
+
+

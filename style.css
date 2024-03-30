@@ -11,3 +11,35 @@ h1{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     text-align: center;
 }
+input[type="radio"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: rgb(171, 178, 152);
+    margin: 0;
+    font: inherit;
+    color: currentColor;
+    width: 0.7em;
+    height: 0.7em;
+    border: 0.08em solid currentColor;
+    border-radius: 50%;
+    margin-right: 8px;
+    transform: translateY(-0.075em);
+    place-content: center;
+}
+input[type="radio"]::before {
+    content: "";
+    width: 0.65em;
+    height: 0.65em;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em var(--form-control-color);
+    background-color: CanvasText;
+}
+input[type="radio"]:checked::before {
+    transform: scale(1);
+}
+input[type="radio"]:focus {
+    outline: max(2px, 0.15em) solid currentColor;
+    outline-offset: max(2px, 0.15em);
+}
