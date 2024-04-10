@@ -157,39 +157,42 @@ function loadQuestion() {
         choicesdiv.appendChild(choiceLabel);
         options.appendChild(choicesdiv);
     }
-    if(answers.length == 10)
-    {
-        setInterval(startTimer, 1000);
-    }
+    // console.log("checkOutside")
+    // if(answers.length == 10)
+    // {
+    //     console.log("checkInside")
+    //     setInterval(startTimer, 1000);
+    // }
 }
 
-var timeLeft = 5;
+// var timeLeft = 5;
 
-function startTimer() {
-    var elem = document.getElementById('timer');
-    console.log(answers.length, "next");
-    if (timeLeft == -1 && answers.length != 12) {
-        document.getElementById('timer').remove();
-        clearTimeout(setInterval(startTimer, 10));
-        nextQuestion();
-    }
-    else if(answers.length == 12 && document.getElementById('timer') != null)
-    {
-        document.getElementById('timer').remove();
-        clearTimeout(setInterval(startTimer, 10));
-    } 
-    else if (document.getElementById('timer') != null)
-    {
-        elem.innerHTML = timeLeft + ' seconds remaining';
-        timeLeft--;
-    }
-}
+// function startTimer() {
+//     var elem = document.getElementById('timer');
+//     console.log(answers.length, "next");
+//     if (timeLeft == -1 && answers.length != 12) {
+//         document.getElementById('timer').remove();
+//         clearTimeout(setInterval(startTimer, 10));
+//         nextQuestion();
+//     }
+//     else if(answers.length == 12 && document.getElementById('timer') != null)
+//     {
+//         document.getElementById('timer').remove();
+//         clearTimeout(setInterval(startTimer, 10));
+//     } 
+//     else if (document.getElementById('timer') != null)
+//     {
+//         elem.innerHTML = timeLeft + ' seconds remaining';
+//         timeLeft--;
+//     }
+// }
 
 // loadQuestion()
 
 function storeAnswer() {
     const responses = document.getElementsByName("answer");
     console.log(responses, "response");
+    console.log(answers, "answers");
     responses.forEach((response) => {
         if(response.type == "radio" && response.checked == true)
         {
