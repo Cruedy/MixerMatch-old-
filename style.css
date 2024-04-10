@@ -1,35 +1,29 @@
-body, html {
+/* body, html {
     height: 100%;
-}
+} */
 
-* {
+/* * {
     box-sizing: border-box;
-}
-.bg-img {
-    /* The image used */
-    background-image: url("ws_mix.jpg");
-    /* Control the height of the image */
-    min-height: 380px;
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-}
+} */
   
 /* Add styles to the form container */
 .container {
-    position: absolute;
+    position: center;
     right: 0;
-    margin: 20px;
+    margin-left:auto;
+    margin-right: auto;
     max-width: 300px;
     padding: 16px;
     background-color: white;
 }
-.button { 
+.intro{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.but { 
     background-color: #000000; 
     border: none; 
-    color: rgb(171, 178, 152); 
+    color: white; 
     padding: 20px 34px; 
     text-align: center; 
     text-decoration: none; 
@@ -38,9 +32,10 @@ body, html {
     margin: 4px 2px; 
     cursor: pointer; 
 }
-/* body{
-    background-color:rgb(171, 178, 152);
-} */
+body{
+    background-image: url("ws_mix.jpeg");
+    /* background-color:rgb(171, 178, 152); */
+}
 h1{
     font-size: x-large;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
