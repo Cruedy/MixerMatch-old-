@@ -16,11 +16,37 @@ const questions = [
         ]
     },
     {
+        question: "Which team are you on?",
+        inputType: "choice",
+        options: [
+            "Swim and Dive",
+            "Womens Water Polo",
+            "Mens Water Polo"
+        ]
+    },
+    {
         question: "Are you in a committed relationship already?",
         inputType: "choice",
         options: [
             "yes",
             "no"
+        ]
+    },
+    {
+        question: "Are you in a committed relationship already?",
+        inputType: "choice",
+        options: [
+            "yes",
+            "no"
+        ]
+    },
+    {
+        question: "What is your gender identity?",
+        inputType: "choice", 
+        options: [
+            "Woman",
+            "Man",
+            "Nonbinary"
         ]
     },
     {
@@ -39,6 +65,25 @@ const questions = [
             "Woman",
             "Man",
             "Everyone"
+        ]
+    },
+    {
+        question: "What are your gender preferences?",
+        inputType: "choice", 
+        options: [
+            "Woman",
+            "Man",
+            "Everyone"
+        ]
+    },
+    {
+        question: "Who do you think should be a swim captain next year?",
+        inputType: "choice",
+        options: [
+            "Gregory Lonzo",
+            "Cecil the Sagehen",
+            "Hiram Chodosh",
+            "That one girl that shouldn't have dyed her hair"
         ]
     },
     {
@@ -62,6 +107,16 @@ const questions = [
         ]
     },
     {
+        question: "What's the name of your clique?",
+        inputType: "choice",
+        options: [
+            "Big Brawly Bros",
+            "Those two girls who whisper to each other 24/7",
+            "The Collins Breakfast Club",
+            "Synchronized Game Day Shitters"
+        ]
+    },
+    {
         question: "What's your favorite fetish?",
         inputType: "choice",
         options: [
@@ -69,6 +124,26 @@ const questions = [
             "That sexy referee uniform",
             "Hands with cement filed nails",
             "Chlorine scented skin"
+        ]
+    },
+    {
+        question: "What's your favorite fetish?",
+        inputType: "choice",
+        options: [
+            "Chlorine bleached hair",
+            "That sexy referee uniform",
+            "Hands with cement filed nails",
+            "Chlorine scented skin"
+        ]
+    },
+    {
+        question: "What could you live without?",
+        inputType: "choice",
+        options: [
+            "Theo's lack of shoe-wear",
+            "Coach Dave's gossiping",
+            "'D-squad' - Katy Shaw",
+            "The lack of pool space"
         ]
     },
     {
@@ -92,6 +167,26 @@ const questions = [
         ]
     },
     {
+        question: "Which spot on campus would you rather give birth on?",
+        inputType: "choice",
+        options: [
+            "The cube water",
+            "Seal Court",
+            "That one broken back extension machine in the training and conditioning room",
+            "The Mudd basements"
+        ]
+    },
+    {
+        question: "What's your stance on child rearing?",
+        inputType: "choice",
+        options: [
+            "I dont believe in the future of humanity",
+            "Everyone needs some avoidant attachment issues",
+            "My kids will learn more on a farm than in school",
+            "Kumon"
+        ]
+    },
+    {
         question: "What's your stance on child rearing?",
         inputType: "choice",
         options: [
@@ -110,6 +205,16 @@ const questions = [
             "24",
             "0"
         ]
+    },
+    {
+        question: "What's (8 + 8) % 10 x 4",
+        inputType: "choice",
+        options: [
+            "6.4",
+            "640",
+            "24",
+            "0"
+        ]
     }
 ]
 
@@ -117,14 +222,37 @@ let currentQuestionIndex = 0;
 let completed = 0;
 let answers = [];
 
+// every other question gets skipped
 function loadQuestion() {
+    console.log(currentQuestionIndex, "question number");
     const question = document.getElementById("question");
     const options = document.getElementById("options");
     const textBox = document.getElementById("textBox");
 
     question.textContent = questions[currentQuestionIndex].question;
     options.innerHTML = "";
+    console.log(question.textContent);
 
+    // if(questions[currentQuestionIndex].inputType == "textBox"){
+    //     // Create a label for the text box
+    //     const textBoxLabel = document.createElement("label");
+        
+    //     // Create the text box input element
+    //     const textBoxInput = document.createElement("input");
+    //     textBoxInput.type = "text";
+    //     textBoxInput.id = "textBoxInput";
+        
+    //     // Append label and text box input to the text box container
+    // if (questions[currentQuestionIndex].inputType === "textBox") {
+    //     const textBoxLabel = document.createElement("label");
+        
+    //     const textBoxInput = document.createElement("input");
+    //     textBoxInput.type = "text";
+    //     textBoxInput.id = "textBoxInput";
+    //     textBoxInput.value = ""; // Clear any previous input
+        
+    //     textBox.appendChild(textBoxLabel);
+    //     textBox.appendChild(textBoxInput);
     for (let i = 0; i < questions[currentQuestionIndex].options.length; i++) {
         const choicesdiv = document.createElement("div");
         const choice = document.createElement("input");
@@ -157,6 +285,7 @@ function loadQuestion() {
         choicesdiv.appendChild(choiceLabel);
         options.appendChild(choicesdiv);
     }
+        
     // console.log("checkOutside")
     // if(answers.length == 10)
     // {
@@ -190,6 +319,7 @@ function loadQuestion() {
 // loadQuestion()
 
 function storeAnswer() {
+    console.log("storeAnswer")
     const responses = document.getElementsByName("answer");
     console.log(responses, "response");
     console.log(answers, "answers");
@@ -203,13 +333,13 @@ function storeAnswer() {
             answers.push(response.value);
         }
     })
-    if(answers.length == 3 && answers[2] == 0)
-    {
-        answers.push("null");
-        answers.push("null");
-        currentQuestionIndex++;
-        currentQuestionIndex++;
-    }
+    // if(answers.length == 2 && answers[2] == 0)
+    // {
+    //     answers.push("null");
+    //     answers.push("null");
+    //     currentQuestionIndex++;
+    //     currentQuestionIndex++;
+    // }
     console.log(answers, "answers");
 }
 
@@ -229,9 +359,10 @@ function writeData() {
 }
 
 function nextQuestion() {
+    console.log('next');
     storeAnswer();
     if (currentQuestionIndex < questions.length - 1) {
-        currentQuestionIndex++;
+        currentQuestionIndex = currentQuestionIndex + 1;
         loadQuestion();
     } else {
         console.log("quiz Done")
@@ -245,6 +376,7 @@ window.submit = function() {
 
 // Function to initialize the quiz
 function initializeQuiz() {
+    console.log("quiz started");
     // Load the first question when the page loads
     loadQuestion();
 
@@ -255,5 +387,3 @@ function initializeQuiz() {
 
 // Call initializeQuiz() when the page loads
 document.addEventListener("DOMContentLoaded", initializeQuiz);
-
-

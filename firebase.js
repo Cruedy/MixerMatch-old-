@@ -1,6 +1,7 @@
 // Import the functions you need from the Firebase SDKs
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-app.js";
 import { getDatabase, ref, push, set  } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-database.js";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.10.0/firebase-auth.js";
 
 // Your Firebase configuration
 const firebaseConfig = {
@@ -14,9 +15,14 @@ const firebaseConfig = {
     measurementId: "G-Y52LS97N36"
 };
 
-// Initialize Firebase
+// // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 const db = getDatabase(firebaseApp);
+const auth = getAuth(firebaseApp);
+
+if (auth) {
+    console.log("Firebase is initialized correctly.");
+}
 
 // Export the Firebase database reference if needed
-export { db, ref, push, set  };
+export { db, ref, push, set, auth, firebaseApp, signInWithEmailAndPassword, createUserWithEmailAndPassword };
